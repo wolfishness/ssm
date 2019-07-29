@@ -5,6 +5,8 @@ import com.bosssoft.hr.train.aspect.anno.SysLog;
 import com.bosssoft.hr.train.pojo.dto.DictionaryPage;
 import com.bosssoft.hr.train.pojo.entity.Dictionary;
 import com.bosssoft.hr.train.service.DictionaryService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import com.sun.org.apache.xml.internal.serialize.Method;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.http.ResponseEntity;
@@ -152,9 +154,9 @@ public class DictionaryController {
     @RequestMapping("/queryList")
     public ResponseEntity<?> queryList(@RequestBody DictionaryPage dictionaryPage) {
         //查询相关数据
-        List<Dictionary> dictionaryList = dictionaryService.queryList(dictionaryPage);
+        PageInfo<Dictionary> dictionaryList = dictionaryService.queryList(dictionaryPage);
         JSONObject jsonObject = new JSONObject();
-        if (StringUtils.isEmpty(dictionaryList)) {
+        if (StringUtils.isEmpty(dictionaryList.getList())) {
             jsonObject.put("errCode", -1);
             jsonObject.put("errMessage", "没有找到数据");
             return ResponseEntity.ok(jsonObject);
@@ -162,6 +164,8 @@ public class DictionaryController {
         jsonObject.put("errCode", 1);
         jsonObject.put("errMessage", "success");
         jsonObject.put("data", dictionaryList);
+        ResponseEntity<?> responseEntity = ResponseEntity.ok(jsonObject);
+        Object object = responseEntity.getBody();
         return ResponseEntity.ok(jsonObject);
     }
 

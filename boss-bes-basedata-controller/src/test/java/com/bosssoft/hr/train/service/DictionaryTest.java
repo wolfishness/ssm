@@ -3,6 +3,10 @@ package com.bosssoft.hr.train.service;
 import com.bosssoft.hr.train.dao.DictionaryDao;
 import com.bosssoft.hr.train.pojo.dto.DictionaryPage;
 import com.bosssoft.hr.train.pojo.entity.Dictionary;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.oracle.webservices.internal.api.EnvelopeStyle;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +24,8 @@ public class DictionaryTest {
     @Resource
     private DictionaryService dictionaryService;
 
+    @Resource
+    private DictionaryDao dictionaryDao;
 
     /**
      * 测试自增长式的插入语句
@@ -51,7 +57,7 @@ public class DictionaryTest {
         //设置查询的页数为第一页
         dictionaryPage.setIndex(1);
         //只设置页数查询
-        List<Dictionary> dictionaryList = dictionaryService.queryList(dictionaryPage);
+        PageInfo<Dictionary> dictionaryList = dictionaryService.queryList(dictionaryPage);
         System.out.println("只有页数");
         System.out.println(dictionaryList);
 
@@ -101,6 +107,18 @@ public class DictionaryTest {
         dictionary.setStatus(0);
         int result = dictionaryService.delete(dictionary);
         System.out.println("修改结果："+result);
+    }
+
+    @Test
+    public void testDao() throws  Exception{
+        PageHelper.startPage(1,10);
+        Page<Dictionary> dictionaryPage = (Page<Dictionary>) dictionaryDao.select(null);
+
+        System.out.println("测试");
+        int res = dictionaryPage.getPageNum();
+        int res1 =dictionaryPage.getPages();
+        List<Dictionary> res2 =dictionaryPage.getResult();
+        Long res3 =dictionaryPage.getTotal();
     }
 
 }

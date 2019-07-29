@@ -60,8 +60,6 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
-
-
         <!--slf4j-log4j12 日志管理-->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -77,6 +75,12 @@
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
             <version>${tk.mybatis.version}</version>
+        </dependency>
+        <!--分页的依赖-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.3</version>
         </dependency>
         <!-- SpringBootText注解依赖 -->
         <dependency>

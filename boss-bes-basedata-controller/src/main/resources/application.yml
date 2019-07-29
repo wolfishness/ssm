@@ -8,9 +8,7 @@ spring:
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-logging:
-  config: boss-bes-basedata-controller/src/main/resources/log4j.properties
-  #config: src/main/resources/log4j.properties
+
 
 mybatis:
   type-aliases-package: com.bosssoft.hr.train.pojo.entity

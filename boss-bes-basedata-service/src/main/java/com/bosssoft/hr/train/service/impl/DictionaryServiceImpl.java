@@ -4,6 +4,9 @@ import com.bosssoft.hr.train.dao.DictionaryDao;
 import com.bosssoft.hr.train.pojo.dto.DictionaryPage;
 import com.bosssoft.hr.train.pojo.entity.Dictionary;
 import com.bosssoft.hr.train.service.DictionaryService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -75,7 +78,7 @@ public class DictionaryServiceImpl implements DictionaryService {
      * @return 返回查找到的数据，为list类型，有可能为空
      */
     @Override
-    public List<Dictionary> queryList(DictionaryPage dictionaryPage) {
+    public PageInfo<Dictionary> queryList(DictionaryPage dictionaryPage) {
         //条件查询
         Example example = new Example(Dictionary.class);
         Example.Criteria criteria = example.createCriteria();
@@ -102,11 +105,11 @@ public class DictionaryServiceImpl implements DictionaryService {
             }
         }
         //计算分页查询的条件
-        int pageNum = (dictionaryPage.getIndex() - 1) * PAGE_SIZE;
-        RowBounds rowBounds = new RowBounds(pageNum, PAGE_SIZE);
+        PageHelper.startPage(dictionaryPage.getIndex(),PAGE_SIZE);
+        List<Dictionary> dictionaryList = dictionaryDao.selectByExample(example);
         //查询相关记录
-        List<Dictionary> dictionaryList = dictionaryDao.selectByExampleAndRowBounds(example, rowBounds);
-        return dictionaryList;
+        PageInfo<Dictionary> dictionaryPages = new PageInfo<>(dictionaryList);
+        return dictionaryPages;
     }
 
     /**

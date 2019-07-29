@@ -2,6 +2,8 @@ package com.bosssoft.hr.train.service;
 
 import com.bosssoft.hr.train.pojo.dto.DictionaryPage;
 import com.bosssoft.hr.train.pojo.entity.Dictionary;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -44,7 +46,7 @@ public  interface DictionaryService {
      * @param dictionaryPage 实体对象
      * @return 返回查找到的数据，为list类型，有可能为空
      */
-     List<Dictionary> queryList(DictionaryPage dictionaryPage);
+    PageInfo<Dictionary> queryList(DictionaryPage dictionaryPage);
 
     /**
      * 查询一条记录，如果查询到的记录数多于两条会报错
