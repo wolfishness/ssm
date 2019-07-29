@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.bosssoft.hr.train</groupId>
+        <artifactId>boss-bes-basedata-center</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../../boss-bes-basedata-center</relativePath>
+    </parent>
+    <version>1.0-SNAPSHOT</version>
+    <groupId>com.bosssoft.hr.train</groupId>
+    <artifactId>boss-bes-basedata-service</artifactId>
+    <name>boss-bes-basedata-service</name>
+    <description>project for service</description>
+    <packaging>jar</packaging>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.bosssoft.hr.train</groupId>
+            <artifactId>boss-bes-basedata-dao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bosssoft.hr.train</groupId>
+            <artifactId>boss-bes-basedata-pojo</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bosssoft.hr.train</groupId>
+            <artifactId>boss-bes-basedata-compont</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+
+    </build>
+
+</project>
